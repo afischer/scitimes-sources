@@ -1,3 +1,5 @@
+const blacklistRegex = /facebook|fb\.me|twitter|(nyt)(i\.?me?s)?|instagram/g
+
 const articleHed = document.querySelector('article header')
 const articleLinks = document.querySelectorAll('article a[target="_blank"][title]')
 // sometimes the first has weird properties
@@ -13,6 +15,8 @@ sourceDiv.className = 'scitimes-srclist'
 outerDiv.appendChild(sourceDiv);
 
 articleLinks.forEach((anchor) => {
+  if (anchor.href.match(blacklistRegex)) return // skip social media, etc
+
   chrome.runtime.sendMessage({
     method: 'GET',
     url: anchor.href
