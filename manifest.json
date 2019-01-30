@@ -1,0 +1,20 @@
+{
+  "name": "Science Times Sources",
+  "version": "0.1.0",
+  "description": "Show journals linked in times articles",
+  "manifest_version": 2,
+  "permissions": [
+    "activeTab",
+    "webRequest",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": [ "background.js" ]
+  },
+  "content_scripts": [{
+    "css": ["style.css"],
+    "js": ["extension.js"],
+    "matches": ["https://*.nytimes.com/*"],
+    "run_at": "document_idle"
+  }]
+}

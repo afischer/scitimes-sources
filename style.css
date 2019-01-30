@@ -1,0 +1,41 @@
+/* SWITCH TO GRID LAYOUT */
+.srclist-wrapper {
+  margin-top: 0 !important;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-family: 'nyt-franklin', helvetica, arial, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  color: #444;
+}
+
+.srclist-wrapper em {
+  font-weight: 600;
+}
+
+.scitimes-srclist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8px;
+  margin: 5px 0 15px 0;
+}
+
+
+.scitimes-srclist .scitimes-source {
+  display: inline-block;
+  width: 100%;
+  /* background-color: #f3f3f3; */
+  /* border-radius: 3px; */
+  box-sizing: border-box;
+  border: 1px solid #0000001f;
+  border-radius: 4px;
+
+  padding: 5px;
+  /* margin: 5px; */
+}
+
+.scitimes-srclist .src-title {
+  text-transform: initial;
+  font-size: .85em;
+}
