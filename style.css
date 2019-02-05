@@ -8,6 +8,10 @@
   font-size: 14px !important;
   line-height: 20px !important;
   color: #444;
+  width: calc(100% - 40px);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .srclist-wrapper em {
@@ -21,18 +25,13 @@
   margin: 5px 0 15px 0;
 }
 
-
 .scitimes-srclist .scitimes-source {
   display: inline-block;
   width: 100%;
-  /* background-color: #f3f3f3; */
-  /* border-radius: 3px; */
   box-sizing: border-box;
   border: 1px solid #0000001f;
   border-radius: 4px;
-
   padding: 5px;
-  /* margin: 5px; */
 }
 
 .scitimes-srclist .src-title {

@@ -1,9 +1,9 @@
 function titleCase(str) {
-  str = str.toLowerCase().split(' ');
+  str = str.toLowerCase().split(' ')
   for (var i = 0; i < str.length; i++) {
-    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1)
   }
-  return str.join(' ');
+  return str.join(' ')
 }
 
 function getJournalProp(head, query) {
@@ -12,16 +12,16 @@ function getJournalProp(head, query) {
                || head.querySelector(`meta[name='dc.${query}']`)
                || head.querySelector(`meta[name='dc.${titleCase(Query)}']`)
                || head.querySelector(`meta[name='dc.publisher']`)
-  if (!prop) return;
+  if (!prop) return
   return prop.content
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, callback) {
-  console.log('GOT MESSAGE WITH URL ', request.url);
+  console.log('GOT MESSAGE WITH URL ', request.url)
   const citeProps = ['title']
   const metaProps = {url: request.url}
 
-  const xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest()
 
   xhr.onload = function() {
     console.log('Requesting', request.url)
@@ -52,8 +52,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
   }
 
   xhr.open(request.method, request.url)
-  xhr.responseType = "document";
-  xhr.send();
+  xhr.responseType = "document"
+  xhr.send()
 
-  return true;
-});
+  return true
+})

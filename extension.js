@@ -2,12 +2,10 @@ const blacklistRegex = /facebook|fb\.me|twitter|(nyt)(i\.?me?s)?|instagram/g
 
 const articleHed = document.querySelector('article header')
 const articleLinks = document.querySelectorAll('article a[target="_blank"][title]')
-// sometimes the first has weird properties
-const articleClass = document.querySelectorAll('article p[class^=css]')[1].className
 
 const outerDiv = document.createElement('div')
-outerDiv.innerHTML = '<em>References</em><span class="loader"></span>'
-outerDiv.className = `${articleClass} srclist-wrapper`
+outerDiv.className = 'srclist-wrapper'
+outerDiv.innerHTML = '<em>References</em>'
 
 const sourceDiv = document.createElement('div')
 sourceDiv.className = 'scitimes-srclist'
@@ -22,21 +20,17 @@ articleLinks.forEach((anchor) => {
     url: anchor.href
   }, (res) => {
     if (!res) return
-
-    console.log('cb');
-
+    // destructure properties
+    const {journal_title, title, url} = res
     // create div for each source
     const linkNode = document.createElement('a')
     linkNode.className = 'scitimes-source'
-    linkNode.innerHTML = `${res.journal_title} <div class="src-title">${res.title}</div>`
-    linkNode.href = res.url
+    linkNode.innerHTML = `${journal_title}<div class="src-title">${title}</div>`
+    linkNode.href = url
 
     // Append to source list div
     sourceDiv.appendChild(linkNode)
-  });
-
-
-  // console.log(anchor.href);
+  })
 })
 
 // add source list to article
