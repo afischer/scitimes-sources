@@ -18,6 +18,10 @@
   font-weight: 600;
 }
 
+.srclist-wrapper summary:focus {
+  outline: none;
+}
+
 .scitimes-srclist {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -37,4 +41,21 @@
 .scitimes-srclist .src-title {
   text-transform: initial;
   font-size: .85em;
+}
+
+.scitimes-loader {
+  display: inline-block;
+  vertical-align: text-bottom;
+  margin-right: 5px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #eee;
+  border-top: 2px solid #888;
+  border-radius: 50%;
+  animation: spin 1.5s ease-out infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(200deg); }
+  100% { transform: rotate(560deg); }
 }

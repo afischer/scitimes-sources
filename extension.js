@@ -1,11 +1,11 @@
 const blacklistRegex = /facebook|fb\.me|twitter|(nyt)(i\.?me?s)?|instagram/g
-
 const articleHed = document.querySelector('article header')
 const articleLinks = document.querySelectorAll('article a[target="_blank"][title]')
 
-const outerDiv = document.createElement('div')
+const outerDiv = document.createElement('details')
 outerDiv.className = 'srclist-wrapper'
-outerDiv.innerHTML = '<em>References</em>'
+outerDiv.innerHTML = '<summary></span><span id="src-count"></span>References</summary>'
+articleHed.append(outerDiv);
 
 const sourceDiv = document.createElement('div')
 sourceDiv.className = 'scitimes-srclist'
@@ -30,12 +30,13 @@ articleLinks.forEach((anchor) => {
 
     // Append to source list div
     sourceDiv.appendChild(linkNode)
+    document.getElementById('src-count').innerHTML = `${sourceDiv.children.length} `
   })
 })
 
 // add source list to article
-window.onload = () => {
-  if (articleLinks) {
-    articleHed.parentNode.insertBefore(outerDiv, articleHed.nextSibling)
-  }
-};
+// window.onload = () => {
+//   if (articleLinks) {
+//     articleHed.parentNode.insertBefore(outerDiv, articleHed.nextSibling)
+//   }
+// };
