@@ -14,7 +14,7 @@
   "content_scripts": [{
     "css": ["style.css"],
     "js": ["extension.js"],
-    "matches": ["https://*.nytimes.com/*"],
+    "matches": ["https://*.nytimes.com/*/*/*/science/*"],
     "run_at": "document_idle"
   }]
 }

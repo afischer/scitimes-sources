@@ -22,6 +22,10 @@
   outline: none;
 }
 
+.srclist-number {
+  padding: 0 5px;
+}
+
 .scitimes-srclist {
   display: grid;
   grid-template-columns: 1fr 1fr;
