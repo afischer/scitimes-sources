@@ -3,7 +3,7 @@
 A chrome extension that checks NYT articles for links to peer-reviewed journals
 and displays information about them at the top of the page.
 
-<img src="https://i.imgur.com/iR3d4Ks.png" width="50%" align="center">
+<p align="center"><img src="https://i.imgur.com/iR3d4Ks.png" width="40%"></p>
 
 ## Installation
 
