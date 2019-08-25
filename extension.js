@@ -39,32 +39,3 @@ chrome.runtime.sendMessage({
     sourceDiv.appendChild(linkNode)
   })
 })
-
-// articleLinks.forEach((anchor) => {
-//   if (anchor.href.match(blacklistRegex)) return // skip social media, etc
-//
-//   chrome.runtime.sendMessage({
-//     method: 'GET',
-//     url: anchor.href
-//   }, (res) => {
-//     if (!res) return
-//     // destructure properties
-//     const {journal_title, title, url} = res
-//     // create div for each source
-//     const linkNode = document.createElement('a')
-//     linkNode.className = 'scitimes-source'
-//     linkNode.innerHTML = `${journal_title}<div class="src-title">${title}</div>`
-//     linkNode.href = url
-//
-//     // Append to source list div
-//     sourceDiv.appendChild(linkNode)
-//     document.getElementById('src-count').innerHTML = `${sourceDiv.children.length} `
-//   })
-// })
-
-// add source list to article
-// window.onload = () => {
-//   if (articleLinks) {
-//     articleHed.parentNode.insertBefore(outerDiv, articleHed.nextSibling)
-//   }
-// };

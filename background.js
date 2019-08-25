@@ -10,7 +10,7 @@ function getJournalProp(head, query) {
   // shakes fist at javascript
   const prop = head.querySelector(`meta[name='citation_${query}']`)
                || head.querySelector(`meta[name='dc.${query}']`)
-               || head.querySelector(`meta[name='dc.${titleCase(Query)}']`)
+               || head.querySelector(`meta[name='dc.${titleCase(query)}']`)
                || head.querySelector(`meta[name='dc.publisher']`)
   if (!prop) return
   return prop.content
@@ -28,8 +28,8 @@ const getArticleProps = url => {
     xhr.responseType = "document"
 
     xhr.onload = function() {
-      console.log('Requesting', url)
-      const headElt = this.responseXML.head
+      const headElt = this.responseXML && this.responseXML.head
+      if (!headElt) resolve() // no response, nothing to do
 
       // get journal title, requires a few checks
       metaProps['journal_title'] = headElt.querySelector(`meta[name='citation_journal_title']`) ||
@@ -41,7 +41,7 @@ const getArticleProps = url => {
         // TODO: better deal with horrible DOI javascript redirects
         const redirectURL = this.responseXML.body.querySelector('[name="redirectURL"]')
         const nextURL = redirectURL && redirectURL.value !== null && decodeURIComponent(redirectURL.value)
-        if (!nextURL) return resolve(); // nothing to do
+        if (!nextURL) return resolve(); // no further URL to search
         console.warn('No journal! Trying with', nextURL)
         console.warn(this.responseXML)
         xhr.open(method, decodeURIComponent(nextURL))
@@ -71,14 +71,12 @@ const getArticleProps = url => {
 function getAllArticleData(articleDataProms, cb) {
   return Promise.all(articleDataProms).then(articleData => {
     cb(articleData.filter(data => data != null))
-  }).catch(err => console.err('Got an error', err))
+  }).catch(err => console.error(err))
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, callback) {
-  console.log('GOT MESSAGE WITH URLs ', request.urls)
   const { urls } = request;
   const articleDataProms = urls.map(url => getArticleProps(url))
-  console.log('data proms', articleDataProms);
   getAllArticleData(articleDataProms, callback)
   return true; // async
 })
